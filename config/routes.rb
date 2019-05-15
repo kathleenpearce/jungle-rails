@@ -2,8 +2,8 @@ Rails.application.routes.draw do
 
   root to: 'products#index'
 
-  resources :products, only: [:index, :show]
-  resources :categories, only: [:show]
+  resources :products, only: [:index, :show] # rest resource called resources REQUESTS
+  resources :categories, only: [:show] #matches with GET /categories/id - view info
 
   resource :cart, only: [:show] do
     post   :add_item

@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20160625062916) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "line_items", force: :cascade do |t|
+  create_table "line_items", force: :cascade do |t| # line items on checkout screen
     t.integer  "order_id"
     t.integer  "product_id"
     t.integer  "quantity"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20160625062916) do
   add_index "line_items", ["order_id"], name: "index_line_items_on_order_id", using: :btree
   add_index "line_items", ["product_id"], name: "index_line_items_on_product_id", using: :btree
 
-  create_table "orders", force: :cascade do |t|
+  create_table "orders", force: :cascade do |t| #who bought what using email address
     t.integer  "total_cents"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20160625062916) do
     t.string   "email"
   end
 
-  create_table "products", force: :cascade do |t|
+  create_table "products", force: :cascade do |t| # product belongs to a category - category_id regeres to an id in categories file
     t.string   "name"
     t.text     "description"
     t.string   "image"

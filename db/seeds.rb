@@ -21,7 +21,7 @@ end
 
 # Let's do this ...
 
-## CATEGORIES
+## CATEGORIES #this is what's creating all the products
 
 puts "Finding or Creating Categories ..."
 
