@@ -1,13 +1,47 @@
 <section class="orders-show">
-
+  <article class="products">
   <header class="page-header">
-    <h1>Order #<%= @order.id %></h1>
+    <div class="order-summary jumbotron">
+      <TEXT ALIGN=CENTER><h3><b>Thank you for your order!<br><h4><i>The email used for your order is: <%= @order.email %></i></h4></b></h3></P>
+
+    </div>
+
+    <tr>
+
+
+    <td>
+    <h3> <b>YOUR ORDER:</b> </h3>
+    <h4>Order #<%= @order.id %></h4>
+
+    <% @order.line_items.each do |f| %>
+    <img style="padding-right: 10px; margin-top: 40px; float: left; position: relative," <%= image_tag f.product.image.tiny, alt: f.product.name %> </img>
+    <br><br>
+      <p class="name" style="margin-left: 45px; font-size: 16px;">
+      <b> <%= f.product.name %></p> </b>
+
+      <p class="description">
+     <i> <%= f.product.description %> </i></p>
+<br>
+     <p class="quantity">
+     <i> <b>Quantity:</b> <%= f.quantity %> &nbsp; &nbsp; <b>Price:</b> <%= f.item_price * f.quantity %> </i></p>
+
+
+
+    <br>
+    <% end %>
+</td>
+
+    <% link_to @order%>
+
+
   </header>
+ </article>
 
-  <div class="order-summary jumbotron">
-    <h4>Thank you for your order!</h4>
-  </div>
 
-  <%= link_to "Continue Shopping", root_path, class: 'btn btn-lg btn-primary' %>
+<p class="final_amount">
+     <h3><b> Order Total: $ <%= @order.total %> </b></p></h3>
+<%= link_to "Continue Shopping", root_path, class: 'btn btn-lg btn-primary' %>
+
+
 
 </section>
