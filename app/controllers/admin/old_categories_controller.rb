@@ -1,5 +1,6 @@
 class Admin::CategoriesControllersdw < ApplicationController
 
+
   def index
 
     @category = Category.order(name: :desc).all
