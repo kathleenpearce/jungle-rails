@@ -1,31 +1,21 @@
 class ReviewsController < ApplicationController
 
-  def show
-    @review = Review.find params[:id]
-    # @products = @review.products.order(created_at: :desc)
-
-  end
-
-  def new
-    @review = Review.new
-
-  end
-
-
   def create
-    @review = Review.new(review_params)
-
-    if @review.save
-     redirect_to [:product], notice: 'Review created!'
+  @product = Product.find params[:product_id]
+   @review = @product.reviews.new(review_params)
+   @review.user = current_user
+   if @review.save
+     redirect_to product_path(@product)
    else
-     render :new
+     redirect_to product_path(@product)
 
-   end
-  end
+end
+end
 
+private
+def review_params
+  params.require(:review).permit(
+    :rating, :description)
 
-
-
-  def destroy
-  end
+end
 end
