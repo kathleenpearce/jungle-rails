@@ -9,7 +9,12 @@ Rails.application.routes.draw do
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
 
-  resources :products, only: [:index, :show] # rest resource called resources REQUESTS
+  resources :products, only: [:index, :show] do
+  resources :reviews do
+  post :create, only: [:create]
+end
+  end
+
   resources :categories, only: [:show] #matches with GET /categories/id - view info
 
   resource :cart, only: [:show] do
