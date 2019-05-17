@@ -10,10 +10,10 @@ Rails.application.routes.draw do
   post '/users' => 'users#create'
 
   resources :products, only: [:index, :show] do
-  resources :reviews do
-  post :create, only: [:create]
+  resources :reviews
+
 end
-  end
+
 
   resources :categories, only: [:show] #matches with GET /categories/id - view info
 
