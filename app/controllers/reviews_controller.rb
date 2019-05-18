@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+  before_filter :authorize
 
   def create
   @product = Product.find params[:product_id]
@@ -10,6 +11,12 @@ class ReviewsController < ApplicationController
      redirect_to product_path(@product)
 
 end
+end
+
+def destroy
+  @review = Review.find params[:id]
+  @review.destroy
+  redirect_to product_path(@review.product)
 end
 
 private

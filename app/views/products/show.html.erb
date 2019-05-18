@@ -27,6 +27,7 @@
       <br><br>
 <div>
 <br><br><br>
+  <% if current_user.present? %>
 
       <div class="col-sm-8">
         <dl class="dl-horizontal">
@@ -44,6 +45,8 @@
        <% end %>
      </div>
 </dl></div>
+<% end %>
+
 
     <div class="row">
       <div class="col-sm-8">
@@ -56,7 +59,13 @@
           <div><b> Reviewed created: </b>  &nbsp <%= review.created_at %></div>
           <div><b> Review description:</b>  &nbsp<i> <%= review.description %><i></div>
 
+
+          <td><%= link_to fa_icon('trash'), [@product, review] , class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: "Are you sure?" } %></td>
+
           <% end %>
+
+
+
           </ul>
 </dl>
     </div>
