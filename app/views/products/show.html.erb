@@ -1,12 +1,12 @@
 <section class="products-show">
-
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
   <header class="page-header">
     <h1><%= link_to @product.category.name, @product.category %> &raquo; <%= @product.name %></h1>
   </header>
 
   <article class="product-detail">
 
-    <div class="row">
+    <div class="product-detail-row">
 
       <div class="col-sm-4">
         <%= image_tag @product.image.url, class: 'main-img' %>
@@ -31,10 +31,9 @@
       <dl class="dl-horizontal">
       <%= form_for :review, url: product_reviews_path(@product) do |f | %>
       <dl class="dl-horizontal">
-         <dt><h4>Add a review:</h4></dt>
          <dd></dd>
          <dt><%= f.label :rating %></dt>
-         <dd><%= f.select(:rating, [1,2,3,4,5])  %></dd>
+         <dd><%= f.select(:rating, [1,2,3,4,5])  %><br></dd>
          <dt><%= f.label :description %></dt>
          <dd><%= f.text_area :description %></dd>
          <dt></dt>
@@ -43,28 +42,29 @@
        <% end %>
      </div>
 </dl></div>
-
 <% end %>
-    <div class="row">
+
+      <div class="review-row">
       <div class="col-sm-8">
       <dl class="dl-horizontal">
-
-        <div><h4> Reviews </h4></div>
-        <ul>
+      <dt>Reviews</dt><br><br>
           <% @reviews.each do |review| %>
-          <div><b> Reviewd by:</b>  &nbsp <%= review.user.name %></div>
-          <div><b> Rating out of 5:  &nbsp </b> <%= review.rating %></div>
-          <div><b> Reviewed created: </b>  &nbsp <%= review.created_at %></div>
-          <div><b> Review description:</b>  &nbsp<i> <%= review.description %><i></div>
+            <b><dt> <i class="fas fa-user-circle"></i></dt></b>
+            <dd><%= review.user.name %></dd>
+            <dd><i style= "font-size: 11px"> <%= review.created_at %></i></style></dd>
+            <dt><b> Rating</b></dt>
+            <dd><%= review.rating %> <i class="fas fa-star"></i></dd>
+            <dt> Description</dt>
+            <dd><i><%= review.description %></i></dd>
 
           <% if current_user == review.user %>
-          <td><%= link_to fa_icon('trash'), [@product, review] , class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: "Are you sure?" } %></td>
+          <dt><%= link_to fa_icon('trash'), [@product, review] , class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: "Are you sure?" } %></dt>
           <% end %>
           <% end %>
-          </ul></dl>
+         </dl>
     </div>
-  </div>
 
   </article>
+
 
 </section>
